@@ -1,0 +1,59 @@
+#!/usr/bin/python
+'''
+Report chef convergence info back into datadog
+'''
+
+import os.path
+import json
+import time
+import re
+
+from checks import AgentCheck
+
+
+class ChefConvergenceAgentCheck(AgentCheck):
+  def elapsed_or_absolute(self, t):
+    '''Do we report times as absolute times, or elapsed times?
+    Default to elapsed
+    '''
+    if self.init_config.get('absolute_time', False):
+      return t
+    else:
+      return int(time.time()) - t
+
+  def filter_strings(self, re_array, string_array):
+    '''Function takes an array of regexs, and an array of strings, and
+    returns any strings that match at least one regex.
+    '''
+    # combine the regexs into one bigger re, and compile it. May
+    # fail for overly clever things.
+    #combined_regex = '|'.join(["({0})".format(x) for x in re_array])
+    combined = "(" + ")|(".join(re_array) + ")"
+    compiled = re.compile(combined)
+    # Now, filter our strings down
+    return [s for s in string_array if compiled.search(s)]
+
+      
+  def check(self, instance):
+    convergence_file = instance['file']
+    if os.path.isfile(convergence_file):
+      with open(convergence_file, 'r') as data_file:
+        data = json.load(data_file)
+
+      # elapsed time since last full convergence
+      elapsed_name = instance.get('full_prefix',
+                                  'chef.convergence.full')
+      self.gauge(elapsed_name,
+                 self.elapsed_or_absolute(data['full_convergence']))
+      
+      # Report the time since converging cookbooks, as filtered.
+      recipe_keys = self.filter_strings(
+        instance.get('recipe_filters', ['.*']),
+        data['recipes'].keys())
+      recipe_base = instance.get('recipe_prefix',
+                                 'chef.convergence.recipe.')
+      
+      for r in recipe_keys:
+        metric_name = recipe_base + r.replace('::', '.')
+        self.gauge(metric_name,
+                   self.elapsed_or_absolute(data['recipes'][r]['time']))
