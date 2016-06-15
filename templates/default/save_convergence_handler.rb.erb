@@ -2,7 +2,7 @@ require 'json'
 require 'chef/log'
 
 module Handler
-  class ConvergenceToDisk < Chef::Handler
+  class SaveConvergence < Chef::Handler
 
     def full_convergence?
       # run_context or run_status? Who knows...
@@ -14,7 +14,7 @@ module Handler
 
       # First, read the old data
       begin
-        data = JSON.parse(File.read("<%= node['convergence_handler']['outfile'] %>"))
+        data = JSON.parse(File.read("<%= node['save_convergence_handler']['outfile'] %>"))
       rescue
         data = {}
       end
@@ -36,7 +36,7 @@ module Handler
       # Set all the recipe versions and timestamps.
       # Start with by pruning old entries
       data['recipes'] = {} unless data['recipes'].is_a?(Hash)
-      recipefilter = Regexp.union(<%= node['convergence_handler']['recipefilters'] %>)
+      recipefilter = Regexp.union(<%= node['save_convergence_handler']['recipefilters'] %>)
       data['recipes'].keep_if { |name, _v| name.match(recipefilter) }
 
       # Now look at the runlist and save things as appropriate.
@@ -49,11 +49,11 @@ module Handler
       end
 
       # Prune the cookbooks data to what we want to persist to disk.
-      cookbookfilter = Regexp.union(<%= node['convergence_handler']['cookbookfilters'] %>)
+      cookbookfilter = Regexp.union(<%= node['save_convergence_handler']['cookbookfilters'] %>)
       data['cookbooks'].keep_if { |name, _v| name.match(cookbookfilter) }
 
       # And now writing everything to disk
-      File.open("<%= node['convergence_handler']['outfile'] %>", 'w') do |f|
+      File.open("<%= node['save_convergence_handler']['outfile'] %>", 'w') do |f|
         f.puts JSON.pretty_generate(data)
       end
 

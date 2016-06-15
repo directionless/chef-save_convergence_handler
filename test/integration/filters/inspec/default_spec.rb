@@ -1,5 +1,5 @@
 # Test that the various recipes were included, by way of temp files.
-describe file('/tmp/convergence_handler_test1') do
+describe file('/tmp/save_convergence_handler_test1') do
   it { should be_file }
 end
 
@@ -16,17 +16,17 @@ describe json_obj do
 
   it 'cookbooks recorded' do
     expect(json_obj['cookbooks'].keys.sort).to eq([
-                                                    "convergence_handler",
-                                                    "convergence_handler_test",
+                                                    "save_convergence_handler",
+                                                    "save_convergence_handler_test",
                                                     "chef_handler"
                                                   ].sort)
   end
 
   it 'recipes recorded' do
     expect(json_obj['recipes'].keys.sort).to eq([
-                                                  "convergence_handler::default",
-                                                  "convergence_handler_test::file",
-                                                  "convergence_handler_test::filters",
+                                                  "save_convergence_handler::default",
+                                                  "save_convergence_handler_test::file",
+                                                  "save_convergence_handler_test::filters",
                                                 ].sort)
   end
 end

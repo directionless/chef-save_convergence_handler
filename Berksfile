@@ -10,6 +10,6 @@ metadata
 
 
 group :test do
-  test_cookbook 'convergence_handler_test'
+  test_cookbook 'save_convergence_handler_test'
   test_cookbook 'datadog_test'
 end

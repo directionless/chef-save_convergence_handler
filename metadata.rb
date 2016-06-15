@@ -1,4 +1,4 @@
-name             'convergence_handler'
+name             'save_convergence_handler'
 maintainer       'seph'
 maintainer_email 'seph@directionless.org'
 license          'all_rights'

@@ -16,14 +16,14 @@ platforms:
 suites:
   - name: default
     run_list:
-      - recipe[convergence_handler]
-      - recipe[convergence_handler_test::file]
+      - recipe[save_convergence_handler]
+      - recipe[save_convergence_handler_test::file]
     attributes:
 
   - name: filters
     run_list:
-      - recipe[convergence_handler_test::filters]
-      - recipe[convergence_handler_test::file]
+      - recipe[save_convergence_handler_test::filters]
+      - recipe[save_convergence_handler_test::file]
     attributes:
 
   - name: datadog

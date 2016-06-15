@@ -17,6 +17,6 @@ describe dd_check do
   it 'correct output' do
     expect(dd_check.stdout).not_to match(/chef.convergence.recipe.datadog/)
     expect(dd_check.stdout).to match(/chef.convergence.recipe.chef_handler/)
-    expect(dd_check.stdout).to match(/chef.convergence.recipe.convergence_handler/)
+    expect(dd_check.stdout).to match(/chef.convergence.recipe.save_convergence_handler/)
   end
 end

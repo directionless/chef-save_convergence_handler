@@ -6,11 +6,11 @@ Designed to help monitoring systems that read data persisted to disk.
 
 ## Usage
 
-Set attributes and `include_recipe 'convergence_handler'`
+Set attributes and `include_recipe 'save_convergence_handler'`
 
 Attributes may be seen in [attributes/default.rb]
 
-A complete example can be seen in [test/cookbooks/convergence_handler_test/recipes/filters.rb]
+A complete example can be seen in [test/cookbooks/save_convergence_handler_test/recipes/filters.rb]
 
 ## Testing
 

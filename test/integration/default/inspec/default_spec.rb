@@ -1,5 +1,5 @@
 # Test that the various recipes were included, by way of temp files.
-describe file('/tmp/convergence_handler_test1') do
+describe file('/tmp/save_convergence_handler_test1') do
   it { should be_file }
 end
 

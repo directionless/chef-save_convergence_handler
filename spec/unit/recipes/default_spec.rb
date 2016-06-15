@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'convergence_handler::default' do
+describe 'save_convergence_handler::default' do
   context 'When all attributes are default, on an unspecified platform' do
     let(:chef_run) do
       runner = ChefSpec::ServerRunner.new

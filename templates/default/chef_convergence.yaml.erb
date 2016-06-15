@@ -1,5 +1,5 @@
 # This is the configuration file for the chef converfence datadog
-# agent check. It is managed by the convergence_handler cookbook.
+# agent check. It is managed by the save_convergence_handler cookbook.
 <%# pull the init_config and instances out out chef data. to_yaml
   # ignores the options, so instead of fighting with the :Seperator,
   # just do everything in a big blob.
@@ -7,7 +7,7 @@
   # sanitize it by bouncing through json as well
   -%>
 <% myconfig = {
-  'init_config' => node['convergence_handler']['datadog']['init_config'],
+  'init_config' => node['save_convergence_handler']['datadog']['init_config'],
   'instances' => @instances,
   } -%>
 <%= JSON.parse(myconfig.to_json).to_yaml %>
