@@ -1,6 +1,6 @@
-# Chef Convergence Handler
+# Chef Save Convergence Handler
 
-A simple chef handler, that will note the last time recipes converged.
+A simple chef handler, that will save the last convergence time to disk.
 
 Designed to help monitoring systems that read data persisted to disk.
 
