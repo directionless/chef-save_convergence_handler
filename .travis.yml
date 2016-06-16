@@ -11,12 +11,6 @@ addons:
     packages:
       - chefdk
 
-env:
-  matrix:
-    - INSTANCE=default-ubuntu-1204
-    - INSTANCE=default-ubuntu-1404
-    - INSTANCE=default-centos-66
-
 before_script:
   - sudo iptables -L DOCKER || ( echo "DOCKER iptables chain missing" ; sudo iptables -N DOCKER )
   - eval "$(/opt/chefdk/bin/chef shell-init bash)"
