@@ -5,8 +5,8 @@ end
 
 # Test data in the handler's output Since we're comparing timestamps,
 # let's say it needs to have finished in the last 30s
-end_time = Time.now.to_i
-start_time = end_time - 30
+end_time = Time.now.to_i + 1
+start_time = end_time - 60
 json_obj = json('/var/tmp/convergence.json')
 describe json_obj do
   it 'full convergence timestamp' do
