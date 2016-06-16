@@ -23,9 +23,9 @@ end
 
 handler_instance = {
   'file' => node['save_convergence_handler']['outfile'],
-  #'full_prefix' => nil,
-  #'recipe_prefix' => nil,
-  'recipe_filters' => ['^chef_handler', '^save_convergence_handler']
+  # 'full_prefix' => nil,
+  # 'recipe_prefix' => nil,
+  'recipe_filters' => ['^chef_handler', '^save_convergence_handler'],
 }
 
 datadog_monitor 'chef_convergence' do

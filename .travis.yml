@@ -1,0 +1,28 @@
+sudo: required
+dist: trusty
+
+services:
+  -docker
+
+addons:
+  apt:
+    sources:
+      - chef-current-precise
+    packages:
+      - chefdk
+
+before_script:
+  - sudo iptables -L DOCKER || ( echo "DOCKER iptables chain missing" ; sudo iptables -N DOCKER )
+  - eval "$(/opt/chefdk/bin/chef shell-init bash)"
+  - chef exec bundle install
+
+script:
+  # - KITCHEN_LOCAL_YAML=.kitchen.docker.yml make test || cat .kitchen/logs/kitchen.log
+  - chef exec foodcritic -t ~FC064 --epic-fail any ./
+  - chef exec cookstyle
+  - chef exec rspec
+
+
+after_script:
+  - bundle exec kitchen destroy all
+
