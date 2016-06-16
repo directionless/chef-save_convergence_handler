@@ -17,7 +17,11 @@ before_script:
   - chef exec bundle install
 
 script:
-  - KITCHEN_LOCAL_YAML=.kitchen.docker.yml make test || cat .kitchen/logs/kitchen.log
+  # - KITCHEN_LOCAL_YAML=.kitchen.docker.yml make test || cat .kitchen/logs/kitchen.log
+  - chef exec foodcritic -t ~FC064 --epic-fail any ./
+  - chef exec cookstyle
+  - chef exec rspec
+
 
 after_script:
   - bundle exec kitchen destroy all

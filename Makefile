@@ -7,6 +7,5 @@ test:
 	chef exec cookstyle
 	chef exec rspec
 	rm -rf Berksfile.lock
-	chef exec kitchen diagnose --all
-	chef exec kitchen test --concurrency --destroy=always
+	chef exec kitchen test --concurrency
 
