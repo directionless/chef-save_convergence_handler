@@ -17,7 +17,7 @@ before_script:
   - chef exec bundle install
 
 script:
-  - KITCHEN_LOCAL_YAML=.kitchen.docker.yml make test
+  - KITCHEN_LOCAL_YAML=.kitchen.docker.yml make test || cat .kitchen/logs/kitchen.log
 
 after_script:
   - bundle exec kitchen destroy all
