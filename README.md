@@ -10,13 +10,12 @@ Set attributes and `include_recipe 'save_convergence_handler'`
 
 Attributes may be seen in [attributes/default.rb]
 
-A complete example can be seen in [test/cookbooks/save_convergence_handler_test/recipes/filters.rb]
+A complete example can be seen in the [integration tests](test/cookbooks/save_convergence_handler_test/recipes/filters.rb)
 
 ## Testing
 
 I don't know how to test handlers with chefspec, so testing is
-primarily done through test kitchen. There are two suites, `default`
-and `filters`
+primarily done through test kitchen.
 
 ## Related Projects
 
@@ -29,3 +28,6 @@ related, but not quite appropriate.
 # Monitoring Systems
 
 ## DataDog
+
+This cookbook includes a datadog custom check. You'll need to
+configure and install it. For an example, look at the [integration tests](test/cookbooks/datadog_test/recipes/default.rb)
