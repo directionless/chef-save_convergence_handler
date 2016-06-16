@@ -1,2 +1,15 @@
+Style/WordArray:
+  Enabled: false
+
+Style/SpaceBeforeFirstArg:
+  Exclude:
+    - '**/metadata.rb'
+
+Style/TrailingCommaInLiteral:
+  EnforcedStyleForMultiline: 'comma'
+
 Metrics/LineLength:
   Max: 100
+
+Style/IndentArray:
+  Enabled: false

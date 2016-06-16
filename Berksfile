@@ -5,9 +5,7 @@ def test_cookbook(name)
   cookbook name, path: location
 end
 
-
 metadata
-
 
 group :test do
   test_cookbook 'save_convergence_handler_test'

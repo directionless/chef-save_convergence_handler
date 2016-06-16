@@ -7,9 +7,8 @@ default['save_convergence_handler']['outfile'] = '/var/tmp/convergence.json'
 default['save_convergence_handler']['cookbookfilters'] = []
 default['save_convergence_handler']['recipefilters'] = []
 
-
 # Settings related to how we the data dog monitor reports
 default['save_convergence_handler']['datadog']['init_config'] = {
-  'absolute_time'            => false,   # Report as absolute or elapsed
+  'absolute_time'            => false, # Report as absolute or elapsed
   'min_collection_interval'  => 60,
 }
